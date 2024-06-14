@@ -12,7 +12,13 @@ def create(system_symbol=None):
 
   r = requests.get(marketplaces_url)
 
-  return r.text
+  json_object = r.json()
 
+  meta = json_object['meta']
 
+  total = meta['total']
 
+  if total > 1:
+    return "true"
+  else:
+    return "false"
